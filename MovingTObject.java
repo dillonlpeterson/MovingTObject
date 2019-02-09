@@ -64,13 +64,18 @@ public class MovingTObject implements Drawable {
 		sym1bstep(0.5 * cof);
 	}
 
+	// Modified sym2bstep to keep track of the time
 	public void sym2bstep(double cof) {
 		// Position step at dt/2 
 		positionstep(0.5*cof);
+		
+		t = t + 0.5 * cof * dt;
 		// Velocity step at dt 
 		velocitystep(cof);
 		// Position step at dt/2
 		positionstep(0.5*cof);
+
+		t = t + 0.5 * cof * dt;
 	}
 
 	// Computes and returns Acceleration object given initial Acceleration and timestep coefficient cof.
