@@ -5,13 +5,16 @@ public class MovingTObject implements Drawable {
 
 	double dt, t;
 	double E;
-	private double r, r2;
+	private double r, r22;
 
 	int nspeed = 10;
 
 	Position p;
 	Velocity v;
 	Acceleration a;
+
+	Position r1 = new Position();
+	Position r2 = new Position();
 
 	Trail trail = new Trail();
 
@@ -30,12 +33,10 @@ public class MovingTObject implements Drawable {
 	// Implemented Restricted Three-Body, Time-Dependent Acceleration
 	public void accel() {
 		// Position r1
-		Position r1 = new Position();
 		r1.x = 0.5*Math.Cos(t);
 		r1.y = 0.5 * Math.Sin(t);
 
 		// Position r2
-		Position r2 = new Position();
 		r2.x = -r1.x;
 		r2.y = -r1.y;
 
