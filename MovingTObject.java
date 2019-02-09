@@ -175,11 +175,19 @@ public class MovingTObject implements Drawable {
 	 }
 	 
 	public void draw(DrawingPanel panel, Graphics g) {
+		// Create sun (Colored BLUE) at the position of r1
+		// irad == Radius of Sun
 		int irad=8;
-		int xpix = panel.xToPix(0.0)-irad;
-		int ypix = panel.yToPix(0.0)-irad;   //sun at the origin
+		int xpix = panel.xToPix(r1.x)-irad;
+		int ypix = panel.yToPix(r1.y)-irad;   
 		g.setColor(Color.BLUE);
 		g.fillOval(xpix, ypix, 2*irad, 2*irad);
+		// Create another sun (Colored GREEN) at the position of r2
+		xpix = panel.xToPix(r2.x) - irad;
+		ypix = panel.yToPix(r2.y) - iread;
+		g.setColor(Color.GREEN);
+		g.fillOval(xpix, ypix, 2*irad, 3*irad);
+
 		irad=5;            //smaller moving planet
 		xpix = panel.xToPix(p.x)-irad;
 		ypix = panel.yToPix(p.y)-irad;
