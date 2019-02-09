@@ -9,4 +9,12 @@ public class Position {
 
         return pos;
     }
+
+    public static Position sub(Position p1, Position p2) {
+        Position pos = new Position();
+        pos.x = p1.x - p2.x;
+        pos.y = p1.y - p2.y;
+
+        return pos;
+    }
 }

@@ -27,11 +27,26 @@ public class MovingTObject implements Drawable {
 		E = 0.5 * (v.x * v.x + v.y * v.y) - 1. / Math.sqrt(p.x * p.x + p.y * p.y);
 	}
 
+	// Implemented Restricted Three-Body, Time-Dependent Acceleration
 	public void accel() {
-		r2 = p.x * p.x + p.y * p.y;
-		r = Math.sqrt(r2);
-		a.x = -p.x / r / r2;
-		a.y = -p.y / r / r2;
+		// Position r1
+		Position r1 = new Position();
+		r1.x = 0.5*Math.Cos(t);
+		r1.y = 0.5 * Math.Sin(t);
+
+		// Position r2
+		Position r2 = new Position();
+		r2.x = -r1.x;
+		r2.y = -r1.y;
+
+		Position d1 = new Position();
+		d1 = Position.sub(p, r1);
+
+		Position d2 = new Position();
+		d2 = Position.sub(p. r2);
+
+		a.x = -0.5 * (d1.x/(Math.pow(d1.x,3)) + d2.x/(Math.pow(d2.x,3)));
+		a.y = -0.5 * (d1.y/(Math.pow(d1.y,3)) + d2.y/(Math.pow(d2.y,3)));
 	}
 
 	// Increment position given timestep coefficient cof
@@ -155,7 +170,6 @@ public class MovingTObject implements Drawable {
 
 	public void doStep(double cof){
 		this.sym2bstep(0.5);
-		t=t+dt;
 		trail.addPoint(p.x, p.y);
 	 }
 	 
