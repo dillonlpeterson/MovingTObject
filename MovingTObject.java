@@ -13,8 +13,8 @@ public class MovingTObject implements Drawable {
 	Velocity v;
 	Acceleration a;
 
-	Position r1 = new Position();
-	Position r2 = new Position();
+	Position r1;
+	Position r2;
 
 	Trail trail = new Trail();
 
@@ -22,6 +22,14 @@ public class MovingTObject implements Drawable {
 		p = new Position();
 		v = new Velocity();
 		a = new Acceleration();
+
+		r1 = new Position();
+		r1.x = 0.5;
+		r1.y = 0.0;
+
+		r2 = new Position();
+		r2.x = -0.5;
+		r2.y = 0.0;
 		System.out.println("A new moving object is created.");
 	}
 
@@ -33,8 +41,8 @@ public class MovingTObject implements Drawable {
 	// Implemented Restricted Three-Body, Time-Dependent Acceleration
 	public void accel() {
 		// Position r1
-		r1.x = 0.5*Math.Cos(t);
-		r1.y = 0.5 * Math.Sin(t);
+		r1.x = 0.5*Math.cos(t);
+		r1.y = 0.5 * Math.sin(t);
 
 		// Position r2
 		r2.x = -r1.x;
@@ -44,10 +52,10 @@ public class MovingTObject implements Drawable {
 		d1 = Position.sub(p, r1);
 
 		Position d2 = new Position();
-		d2 = Position.sub(p. r2);
+		d2 = Position.sub(p, r2);
 
-		a.x = -0.5 * (d1.x/(Math.pow(d1.x,3)) + d2.x/(Math.pow(d2.x,3)));
-		a.y = -0.5 * (d1.y/(Math.pow(d1.y,3)) + d2.y/(Math.pow(d2.y,3)));
+		a.x = -0.5 * (d1.x/(Math.pow(d1.r(),3)) + d2.x/(Math.pow(d2.r(),3)));
+		a.y = -0.5 * (d1.y/(Math.pow(d1.r(),3)) + d2.y/(Math.pow(d2.r(),3)));
 	}
 
 	// Increment position given timestep coefficient cof
@@ -170,7 +178,7 @@ public class MovingTObject implements Drawable {
 	}
 
 	public void doStep(double cof){
-		this.sym2bstep(0.5);
+		this.sym2bstep(1.0);
 		trail.addPoint(p.x, p.y);
 	 }
 	 
@@ -184,9 +192,9 @@ public class MovingTObject implements Drawable {
 		g.fillOval(xpix, ypix, 2*irad, 2*irad);
 		// Create another sun (Colored GREEN) at the position of r2
 		xpix = panel.xToPix(r2.x) - irad;
-		ypix = panel.yToPix(r2.y) - iread;
+		ypix = panel.yToPix(r2.y) - irad;
 		g.setColor(Color.GREEN);
-		g.fillOval(xpix, ypix, 2*irad, 3*irad);
+		g.fillOval(xpix, ypix, 2*irad, 2*irad);
 
 		irad=5;            //smaller moving planet
 		xpix = panel.xToPix(p.x)-irad;
