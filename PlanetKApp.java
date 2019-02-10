@@ -14,7 +14,7 @@ public class PlanetKApp extends AbstractSimulation {
   public PlanetKApp() {
     frame.setSize(600, 600);
     frame.addDrawable(planet);
-    frame.setPreferredMinMax(-12., 12., -12., 12.);
+    frame.setPreferredMinMax(-1.2, 1.2, -1.2, 1.2);
     frame.setSquareAspect(true);
   }
 

@@ -92,7 +92,7 @@ public class MovingTObject implements Drawable {
 	public void sym2bstep(double cof) {
 		// Position step at dt/2 
 		positionstep(0.5*cof);
-		
+		accel();
 		t = t + 0.5 * cof * dt;
 		// Velocity step at dt 
 		velocitystep(cof);
