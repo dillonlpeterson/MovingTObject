@@ -16,6 +16,8 @@ public class MovingTObject implements Drawable {
 	Position r1;
 	Position r2;
 
+	double rcos, rsin, xrot, yrot;
+
 	Trail trail = new Trail();
 
 	public MovingTObject() {
@@ -179,26 +181,32 @@ public class MovingTObject implements Drawable {
 
 	public void doStep(double cof){
 		this.sym2bstep(1.0);
-		trail.addPoint(p.x, p.y);
+		double rcos = Math.cos(t);
+		double rsin = Math.sin(t);
+		//xpix = panel.xToPix(p.x)-irad;
+		//ypix = panel.yToPix(p.y)-irad;
+		double xrot = rcos * p.x + rsin * p.y;
+		double yrot = -rsin * p.x + rcos * p.y;
+		trail.addPoint(xrot, yrot);
 	 }
 	 
+	// Changed for co-rotating frame.
 	public void draw(DrawingPanel panel, Graphics g) {
 		// Create sun (Colored BLUE) at the position of r1
 		// irad == Radius of Sun
 		int irad=8;
-		int xpix = panel.xToPix(r1.x)-irad;
-		int ypix = panel.yToPix(r1.y)-irad;   
+		int xpix = panel.xToPix(0.5)-irad;
+		int ypix = panel.yToPix(0.0)-irad;   
 		g.setColor(Color.BLUE);
 		g.fillOval(xpix, ypix, 2*irad, 2*irad);
 		// Create another sun (Colored GREEN) at the position of r2
-		xpix = panel.xToPix(r2.x) - irad;
-		ypix = panel.yToPix(r2.y) - irad;
+		xpix = panel.xToPix(-0.5) - irad;
+		ypix = panel.yToPix(0.0) - irad;
 		g.setColor(Color.GREEN);
 		g.fillOval(xpix, ypix, 2*irad, 2*irad);
-
 		irad=5;            //smaller moving planet
-		xpix = panel.xToPix(p.x)-irad;
-		ypix = panel.yToPix(p.y)-irad;
+		xpix = panel.xToPix(xrot) - irad;
+		ypix = panel.yToPix(yrot) - irad;
 		g.setColor(Color.RED);
 		g.fillOval(xpix, ypix, 2*irad, 2*irad);
 		trail.draw(panel, g);

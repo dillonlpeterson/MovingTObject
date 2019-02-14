@@ -51,12 +51,12 @@ public class PlanetKApp extends AbstractSimulation {
    * Resets animation to a predefined state.
    */
   public void reset() {
-    control.setValue("x", 10.0);
-    control.setValue("vx", 0.00);
-    control.setValue("y", 0.00);
-    control.setValue("vy", 0.10);
-    control.setValue("dt", 0.10);
-    control.setValue("nspeed", 10);
+    control.setValue("x", 0.0);
+    control.setValue("vx", 0.49);
+    control.setValue("y", 0.058);
+    control.setValue("vy", 0.0);
+    control.setValue("dt", 0.001);
+    control.setValue("nspeed", 200);
     initialize();
   }
 
