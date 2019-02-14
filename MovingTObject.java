@@ -181,12 +181,12 @@ public class MovingTObject implements Drawable {
 
 	public void doStep(double cof){
 		this.sym2bstep(1.0);
-		double rcos = Math.cos(t);
-		double rsin = Math.sin(t);
+		rcos = Math.cos(t);
+		rsin = Math.sin(t);
 		//xpix = panel.xToPix(p.x)-irad;
 		//ypix = panel.yToPix(p.y)-irad;
-		double xrot = rcos * p.x + rsin * p.y;
-		double yrot = -rsin * p.x + rcos * p.y;
+		xrot = rcos * p.x + rsin * p.y;
+		yrot = -rsin * p.x + rcos * p.y;
 		trail.addPoint(xrot, yrot);
 	 }
 	 
